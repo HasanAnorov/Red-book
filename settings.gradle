@@ -1,0 +1,2 @@
+rootProject.name='Red book'
+include ':app'
