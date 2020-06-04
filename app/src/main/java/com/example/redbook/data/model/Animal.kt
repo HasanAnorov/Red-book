@@ -6,11 +6,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName="book")
 
-data class Animal (
-    @PrimaryKey val id :Int,
+    data class Animal (
+    @PrimaryKey
+    val id :Int,
 
-@ColumnInfo(name="type")
-val type :Int,
+    @ColumnInfo(name="type")
+    val type :Int,
 
     @ColumnInfo(name="nameUzb")
     val nameUzb :String,
@@ -21,7 +22,7 @@ val type :Int,
     @ColumnInfo(name="nameEng")
     val nameEng :String,
 
-    @ColumnInfo(name="Status")
+    @ColumnInfo(name="status")
     val status :String,
 
     @ColumnInfo(name="propagation")

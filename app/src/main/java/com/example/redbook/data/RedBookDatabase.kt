@@ -18,6 +18,7 @@ abstract class RedBookDatabase:RoomDatabase() {
                     RedBookDatabase::class.java, "book-database.db"
         )
                 .createFromAsset("book-database.db")
+                .allowMainThreadQueries()
             .build()
 
 }
