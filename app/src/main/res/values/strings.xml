@@ -12,4 +12,9 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+    <string name="menu_invertebrates">Omirtqasizar</string>
+    <string name="menu_fishes">Baliqlar</string>
+    <string name="menu_reptiles">SudralibYuruvchilar</string>
+    <string name="menu_birds">Qushlar</string>
+    <string name="menu_mammals">SutEmizuvchilar</string>
 </resources>

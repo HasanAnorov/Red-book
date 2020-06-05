@@ -13,6 +13,14 @@ import androidx.appcompat.widget.Toolbar
 
 class MainActivity : AppCompatActivity() {
 
+    companion object{
+        const val INVERTEBRATES=1
+        const val FISHES=2
+        const val REPTILES=3
+        const val BIRDS=4
+        const val MAMMALS=5
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,11 +28,6 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val toogle =ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
@@ -33,13 +36,19 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             when(it.itemId)
             {
-                R.id.nav_home ->{
+                R.id.nav_invertebrates ->{
                     return@setNavigationItemSelectedListener true
                 }
-                R.id.nav_gallery ->{
+                R.id.nav_fishes ->{
                     return@setNavigationItemSelectedListener true
                 }
-                R.id.nav_slideshow ->{
+                R.id.nav_reptiles ->{
+                    return@setNavigationItemSelectedListener true
+                }
+                R.id.nav_birds ->{
+                    return@setNavigationItemSelectedListener true
+                }
+                R.id.nav_mammals ->{
                     return@setNavigationItemSelectedListener true
                 }
                 else -> return@setNavigationItemSelectedListener false
