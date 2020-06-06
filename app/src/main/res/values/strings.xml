@@ -12,9 +12,18 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+<<<<<<< HEAD
+    <string name="search">Search</string>
+    <string name="menu_invertebrates">Umurtqasizlilar</string>
+    <string name="menu_fishes">Baliqlar</string>
+    <string name="menu_reptiles">Sudralib yuruvchilar</string>
+    <string name="menu_mammals">Sut emizuvchilar</string>
+    <string name="menu_birds">Qushlar</string>
+=======
     <string name="menu_invertebrates">Omirtqasizar</string>
     <string name="menu_fishes">Baliqlar</string>
     <string name="menu_reptiles">SudralibYuruvchilar</string>
     <string name="menu_birds">Qushlar</string>
     <string name="menu_mammals">SutEmizuvchilar</string>
+>>>>>>> master
 </resources>
