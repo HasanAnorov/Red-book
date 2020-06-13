@@ -17,7 +17,7 @@ import com.example.redbook.ui.animal.AnimalFrament
 class MainActivity : AppCompatActivity() {
 
     companion object{
-        const val TYPE_ID="typrId"
+        const val TYPE_ID="typeId"
         const val INVERTEBRATES=1
         const val FISHES=2
         const val REPTILES=3
