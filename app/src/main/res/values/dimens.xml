@@ -7,4 +7,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="margin_standart">16dp</dimen>
     <dimen name="nameStandart">16sp</dimen>
+
+
+    <dimen name="margin_small">8dp</dimen>
 </resources>
