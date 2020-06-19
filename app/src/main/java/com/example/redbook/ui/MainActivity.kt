@@ -12,12 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import com.example.redbook.R
-import com.example.redbook.ui.animal.AnimalFrament
+import com.example.redbook.ui.animal.AnimalFragment
 
 class MainActivity : AppCompatActivity() {
 
     companion object{
-        const val TYPE_ID="typrId"
+        const val TYPE_ID="typeId"
         const val INVERTEBRATES=1
         const val FISHES=2
         const val REPTILES=3
@@ -41,13 +41,13 @@ class MainActivity : AppCompatActivity() {
         )
         drawerLayout.addDrawerListener(toogle)
         toogle.syncState()
-        val fragment =AnimalFrament()
+        val fragment =AnimalFragment()
         val bundle=Bundle()
         bundle.putInt(TYPE_ID, INVERTEBRATES)
         fragment.arguments=bundle
         supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,fragment).commit()
         navView.setNavigationItemSelectedListener {
-            val mFragment=AnimalFrament()
+            val mFragment=AnimalFragment()
             val mBundle=Bundle()
             when(it.itemId)
             {

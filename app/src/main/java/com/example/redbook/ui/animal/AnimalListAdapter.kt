@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.redbook.R
 import com.example.redbook.data.model.Animal
 import kotlinx.android.synthetic.main.item_animal.view.*
 
 
-class AnimalListAdapter: RecyclerView.Adapter<AnimalListAdapter.AnimalListViewHolder>() {
+class AnimalListAdapter(private val listener:AnimalItemClickListener): RecyclerView.Adapter<AnimalListAdapter.AnimalListViewHolder>() {
 
     var models :List<Animal> = listOf()
     set(value){
@@ -48,9 +49,18 @@ class AnimalListAdapter: RecyclerView.Adapter<AnimalListAdapter.AnimalListViewHo
             itemView.tvUzbName.text=animal.nameUzb
             itemView.tvRusName.text=animal.nameRus
             itemView.tvEngName.text=animal.nameEng
+            var imageResName="picture${animal.id}"
+            Glide
+                .with(itemView)
+                .load(itemView.context.resources.getIdentifier(imageResName,"drawable",itemView.context.packageName))
+                .into(itemView.ivAnimal)
+          //used to instead od Glide  itemView.ivAnimal.setImageResource(itemView.context.resources.getIdentifier(imageResName,"drawable",itemView.context.packageName))
 
-
+itemView.setOnClickListener {
+    listener.onAnimalItemClick(animal.id)
+}
         }
+
     }
 
 }
