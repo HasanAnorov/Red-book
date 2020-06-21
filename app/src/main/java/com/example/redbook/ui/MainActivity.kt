@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         const val REPTILES=3
         const val BIRDS=4
         const val MAMMALS=5
+        const val FAVORITES=6
 
     }
 
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.fragmentContainer,fragment).commit()
         navView.setNavigationItemSelectedListener {
             val mFragment=AnimalFragment()
+         //   val fFragment=AnimalFragment()
             val mBundle=Bundle()
             when(it.itemId)
             {
@@ -73,6 +75,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_mammals ->{
                     mBundle.putInt(TYPE_ID, MAMMALS)
+                    mFragment.arguments=mBundle
+
+                }
+                R.id.nav_favorites ->{
+                    mBundle.putInt(TYPE_ID, FAVORITES)
                     mFragment.arguments=mBundle
 
                 }

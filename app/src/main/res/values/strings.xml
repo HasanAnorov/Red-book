@@ -18,6 +18,7 @@
     <string name="menu_reptiles">Sudralib yuruvchilar</string>
     <string name="menu_mammals">Sut emizuvchilar</string>
     <string name="menu_birds">Qushlar</string>
+    <string name="menu_favorites">Saylandilar</string>
 
 
 </resources>
