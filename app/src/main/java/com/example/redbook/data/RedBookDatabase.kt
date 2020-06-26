@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.redbook.data.dao.AnimalDao
 import com.example.redbook.data.model.Animal
 
-@Database(entities=[Animal ::class], version = 1)
+@Database(entities=[Animal ::class], version = 4)
 abstract class RedBookDatabase:RoomDatabase() {
     companion object{
         private lateinit var INSTANCE:RedBookDatabase
@@ -19,10 +19,12 @@ abstract class RedBookDatabase:RoomDatabase() {
         )
                 .createFromAsset("book-database.db")
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
             .build()
 
 }
 abstract fun dao() :AnimalDao
 
+    
 
 }

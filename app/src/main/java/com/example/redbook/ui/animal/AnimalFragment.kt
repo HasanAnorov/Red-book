@@ -53,7 +53,7 @@ class AnimalFragment:Fragment(R.layout.fragment_animal),AnimalItemClickListener 
     setData(type)
     }
 
-    fun setData(type:Int){
+    private fun setData(type:Int){
     myAdapter.models=dao.getAllAnimals(type)
     }
 
