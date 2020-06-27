@@ -17,59 +17,38 @@ import com.example.redbook.ui.MainActivity
 import com.example.redbook.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragment_animal.*
 
-class AnimalFragment:Fragment(R.layout.fragment_animal),AnimalItemClickListener {
+class AnimalFragment:Fragment(R.layout.fragment_animal),AnimalItemClickListener,AnimalView {
 
     private val   myAdapter : AnimalListAdapter = AnimalListAdapter(this)
-
     private lateinit var  dao:AnimalDao
+    private lateinit var presenter:AnimalPresenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView.adapter=myAdapter
-        recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
-        val type =arguments?.getInt(MainActivity.TYPE_ID)?:1
+            recyclerView.adapter=myAdapter
+            recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            val type =arguments?.getInt(MainActivity.TYPE_ID)?:1
+            dao=RedBookDatabase.getInstance(requireContext()).dao()
+            presenter= AnimalPresenter(dao,this )
+            presenter.getAllAnimals(type)
 
-        dao=RedBookDatabase.getInstance(requireContext()).dao()
 
-//        etSearch.addTextChangedListener(object:TextWatcher{
-//            override fun afterTextChanged(s: Editable?) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-
-        etSearch.addTextChangedListener {
-    val result :List<Animal > = dao.searchAnimalName(type,"${it.toString()}%")
-     myAdapter.models=result
+            etSearch.addTextChangedListener {
+        val result :List<Animal > = dao.searchAnimalName(type,"${it.toString()}%")
+            myAdapter.models=result
         }
-
-    setData(type)
-
-      //  setFavorites(favorite)
     }
 
-  private  fun setData(type:Int){
-      if(type!=6)
-    myAdapter.models=dao.getAllAnimals(type)
-  else
-          myAdapter.models=dao.getFavorites()
-  }
-//        private fun setFavorites(favorite:Int){
-//        myAdapter.models=dao.getFavorites(favorite)
-//    }
+
 
     override fun onAnimalItemClick(id:Int) {
-       val mIntent= Intent(requireActivity(),DetailActivity::class.java)
-        mIntent.putExtra(DetailActivity.ANIMAL_ID,id)
-        startActivity(mIntent)
+        val mIntent= Intent(requireActivity(),DetailActivity::class.java)
+            mIntent.putExtra(DetailActivity.ANIMAL_ID,id)
+            startActivity(mIntent)
+    }
+
+    override fun setData(models: List<Animal>) {
+        myAdapter.models=models
     }
 
 }
