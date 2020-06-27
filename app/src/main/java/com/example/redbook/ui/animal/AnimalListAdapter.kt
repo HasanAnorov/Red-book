@@ -56,8 +56,8 @@ class AnimalListAdapter(private val listener:AnimalItemClickListener): RecyclerV
                 .into(itemView.ivAnimal)
           //used to instead od Glide  itemView.ivAnimal.setImageResource(itemView.context.resources.getIdentifier(imageResName,"drawable",itemView.context.packageName))
 
-itemView.setOnClickListener {
-    listener.onAnimalItemClick(animal.id)
+    itemView.setOnClickListener {
+        listener.onAnimalItemClick(animal.id)
 }
         }
 

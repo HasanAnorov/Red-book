@@ -44,6 +44,9 @@ import androidx.room.PrimaryKey
     val breeding :String,
 
     @ColumnInfo(name="security")
-    val security :String
+    val security :String,
+
+    @ColumnInfo(name ="isFavorite")
+    var isFavorite:Int?=0
 
     )

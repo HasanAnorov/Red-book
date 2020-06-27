@@ -28,6 +28,7 @@ class AnimalFragment:Fragment(R.layout.fragment_animal),AnimalItemClickListener 
         recyclerView.adapter=myAdapter
         recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         val type =arguments?.getInt(MainActivity.TYPE_ID)?:1
+
         dao=RedBookDatabase.getInstance(requireContext()).dao()
 
 //        etSearch.addTextChangedListener(object:TextWatcher{
@@ -51,11 +52,19 @@ class AnimalFragment:Fragment(R.layout.fragment_animal),AnimalItemClickListener 
         }
 
     setData(type)
+
+      //  setFavorites(favorite)
     }
 
-    fun setData(type:Int){
+  private  fun setData(type:Int){
+      if(type!=6)
     myAdapter.models=dao.getAllAnimals(type)
-    }
+  else
+          myAdapter.models=dao.getFavorites()
+  }
+//        private fun setFavorites(favorite:Int){
+//        myAdapter.models=dao.getFavorites(favorite)
+//    }
 
     override fun onAnimalItemClick(id:Int) {
        val mIntent= Intent(requireActivity(),DetailActivity::class.java)
