@@ -24,10 +24,13 @@ class FavoriteFragment:Fragment(R.layout.fragment_favorite), AnimalItemClickList
         favoriteList.adapter=adapter
         favoriteList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         dao= RedBookDatabase.getInstance(requireContext()).dao()
-        setData()
+
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        setData()
+    }
 
     private fun setData(){
 
