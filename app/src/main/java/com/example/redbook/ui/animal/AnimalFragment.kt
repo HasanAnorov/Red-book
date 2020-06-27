@@ -28,7 +28,7 @@ class AnimalFragment:Fragment(R.layout.fragment_animal),AnimalItemClickListener 
         recyclerView.adapter=myAdapter
         recyclerView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         val type =arguments?.getInt(MainActivity.TYPE_ID)?:1
-     //   val favorite=arguments?.getInt(MainActivity.TYPE_ID)?:1
+
         dao=RedBookDatabase.getInstance(requireContext()).dao()
 
 //        etSearch.addTextChangedListener(object:TextWatcher{

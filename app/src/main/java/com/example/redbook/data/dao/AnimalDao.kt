@@ -11,7 +11,7 @@ interface AnimalDao {
 @Query("SELECT*FROM book WHERE type  =:type ")
 fun getAllAnimals(type:Int):List<Animal>
 
-    @Query("SELECT*FROM book WHERE  isFavorite")
+    @Query("SELECT*FROM book WHERE  isFavorite=1")
     fun getFavorites():List<Animal>
 
     @Query("SELECT*FROM book WHERE id=:id")
