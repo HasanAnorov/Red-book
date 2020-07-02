@@ -10,14 +10,21 @@ import com.example.redbook.data.model.Animal
 import kotlinx.android.synthetic.main.item_animal.view.*
 
 
-class AnimalListAdapter(private val listener:AnimalItemClickListener): RecyclerView.Adapter<AnimalListAdapter.AnimalListViewHolder>() {
+class AnimalListAdapter: RecyclerView.Adapter<AnimalListAdapter.AnimalListViewHolder>() {
 
     var models :List<Animal> = listOf()
     set(value){
         field=value
         notifyDataSetChanged()
     }
+    var onItemClick:(animalId:Int)->Unit={
+        animalId ->
+        println("onItemClick hali realizatsiya qilingani yuq")
+    }
 
+    fun setOnItemClickListener(a:(animalId:Int)->Unit){
+        this.onItemClick=a
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalListViewHolder {
 
@@ -34,14 +41,6 @@ class AnimalListAdapter(private val listener:AnimalItemClickListener): RecyclerV
     holder.populateModel(models[position])
     }
 
-
-
-
-
-
-
-
-
     inner class AnimalListViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
         fun populateModel(animal :Animal) {
@@ -57,7 +56,7 @@ class AnimalListAdapter(private val listener:AnimalItemClickListener): RecyclerV
           //used to instead od Glide  itemView.ivAnimal.setImageResource(itemView.context.resources.getIdentifier(imageResName,"drawable",itemView.context.packageName))
 
     itemView.setOnClickListener {
-        listener.onAnimalItemClick(animal.id)
+        onItemClick.invoke(animal.id)
 }
         }
 

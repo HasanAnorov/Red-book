@@ -9,10 +9,7 @@ import com.example.redbook.R
 import com.example.redbook.data.RedBookDatabase
 import com.example.redbook.data.dao.AnimalDao
 import com.example.redbook.data.model.Animal
-import com.example.redbook.ui.MainActivity
-import com.example.redbook.ui.animal.AnimalItemClickListener
 import com.example.redbook.ui.detail.DetailActivity
-import kotlinx.android.synthetic.main.fragment_animal.*
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
 class FavoriteFragment:Fragment(R.layout.fragment_favorite), AnimalItemClickListener,FavoriteView {

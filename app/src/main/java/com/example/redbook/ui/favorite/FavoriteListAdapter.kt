@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.redbook.R
 import com.example.redbook.data.model.Animal
-import com.example.redbook.ui.animal.AnimalItemClickListener
 import kotlinx.android.synthetic.main.item_animal.view.*
 
 class FavoriteListAdapter(private val listener: AnimalItemClickListener):RecyclerView.Adapter<FavoriteListAdapter.FavoriteViewHolder>() {
