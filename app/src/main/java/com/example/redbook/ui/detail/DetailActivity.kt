@@ -10,9 +10,8 @@ import com.example.redbook.data.RedBookDatabase
 import com.example.redbook.data.dao.AnimalDao
 import com.example.redbook.data.model.Animal
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.item_animal.view.*
 
-class DetailActivity : AppCompatActivity() {
+class DetailActivity : AppCompatActivity(),DetailView {
     companion object{
         const val ANIMAL_ID="animalId"
     }
@@ -21,6 +20,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var currentAnimal: Animal
     private lateinit var dao: AnimalDao
     private  var menuItem :MenuItem? =null
+    private lateinit var presenter:DetailPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,17 +32,22 @@ class DetailActivity : AppCompatActivity() {
 
 
         dao=RedBookDatabase.getInstance(this).dao()
+        presenter= DetailPresenter(dao,this)
         animalId=intent.getIntExtra(ANIMAL_ID,0)
-        currentAnimal=dao.getAnimalById(animalId)
+        presenter.getAnimalById(animalId)
 
-        tvStatusContent.text=currentAnimal.status
-        tvHabitatContent.text=currentAnimal.habitat
-        tvPropagationContent.text=currentAnimal.propagation
-        tvBreedingContent.text=currentAnimal.breeding
-        tvLimitingFactorsContent.text=currentAnimal.limitingFactors
-        tvLifestyleContent.text=currentAnimal.lifestyle
-        tvQuantityContent.text=currentAnimal.quantity
-        tvSecurityContent.text=currentAnimal.security
+    }
+
+    override fun setDetailInfo(animal: Animal) {
+        currentAnimal=animal
+        tvStatusContent.text=animal.status
+        tvHabitatContent.text=animal.habitat
+        tvPropagationContent.text=animal.propagation
+        tvBreedingContent.text=animal.breeding
+        tvLimitingFactorsContent.text=animal.limitingFactors
+        tvLifestyleContent.text=animal.lifestyle
+        tvQuantityContent.text=animal.quantity
+        tvSecurityContent.text=animal.security
 
         Glide
             .with(this)
@@ -76,7 +81,7 @@ class DetailActivity : AppCompatActivity() {
       else currentAnimal.isFavorite=1-currentAnimal.isFavorite!!
             currentAnimal.isFavorite=currentAnimal.isFavorite
             setFavoriteIcon()
-        dao.updateAnimal(currentAnimal)
+        presenter.updateAnimal(currentAnimal)
     }
 
     private fun setFavoriteIcon(){

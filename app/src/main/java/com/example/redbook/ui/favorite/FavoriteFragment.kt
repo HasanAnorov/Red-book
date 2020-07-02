@@ -12,14 +12,20 @@ import com.example.redbook.data.model.Animal
 import com.example.redbook.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.fragment_favorite.*
 
-class FavoriteFragment:Fragment(R.layout.fragment_favorite), AnimalItemClickListener,FavoriteView {
+class FavoriteFragment:Fragment(R.layout.fragment_favorite),FavoriteView {
 
-    private val adapter:FavoriteListAdapter =FavoriteListAdapter(this)
+    private val adapter:FavoriteListAdapter =FavoriteListAdapter()
     private lateinit var  dao: AnimalDao
     private lateinit var presenterFavorite:FavoritePresenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        adapter.setOnItemClickListener {id->
+            val mIntent= Intent(requireActivity(), DetailActivity::class.java)
+            mIntent.putExtra(DetailActivity.ANIMAL_ID,id)
+            startActivity(mIntent)
+        }
         favoriteList.adapter=adapter
         favoriteList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         dao= RedBookDatabase.getInstance(requireContext()).dao()
@@ -34,13 +40,7 @@ class FavoriteFragment:Fragment(R.layout.fragment_favorite), AnimalItemClickList
     }
 
 
-    override fun setData(models: List<Animal>) {
-        adapter.models=models
-    }
-
-    override fun onAnimalItemClick(id: Int) {
-        val mIntent= Intent(requireActivity(), DetailActivity::class.java)
-        mIntent.putExtra(DetailActivity.ANIMAL_ID,id)
-        startActivity(mIntent)
+    override fun setFavorites(models: List<Animal>) {
+       adapter.models=models
     }
 }

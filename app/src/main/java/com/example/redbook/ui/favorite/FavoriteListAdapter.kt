@@ -9,25 +9,31 @@ import com.example.redbook.R
 import com.example.redbook.data.model.Animal
 import kotlinx.android.synthetic.main.item_animal.view.*
 
-class FavoriteListAdapter(private val listener: AnimalItemClickListener):RecyclerView.Adapter<FavoriteListAdapter.FavoriteViewHolder>() {
+class FavoriteListAdapter:RecyclerView.Adapter<FavoriteListAdapter.FavoriteViewHolder>() {
 
     inner class FavoriteViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
 
-        fun populateModel(animal:Animal){
-            itemView.tvUzbName.text=animal.nameUzb
-            itemView.tvRusName.text=animal.nameRus
-            itemView.tvEngName.text=animal.nameEng
+        fun populateModel(model:Animal){
+            itemView.tvUzbName.text=model.nameUzb
+            itemView.tvRusName.text=model.nameRus
+            itemView.tvEngName.text=model.nameEng
 
-            var imageResName="picture${animal.id}"
+            var imageResName="picture${model.id}"
             Glide
                 .with(itemView)
                 .load(itemView.context.resources.getIdentifier(imageResName,"drawable",itemView.context.packageName))
                 .into(itemView.ivAnimal)
             itemView.setOnClickListener {
-                listener.onAnimalItemClick(animal.id)
+                onItemClick.invoke(model.id)
             }
         }
 
+    }
+
+   private var onItemClick:(id:Int)->Unit = {}
+
+    fun setOnItemClickListener(onItemClick:(id:Int)->Unit){
+        this.onItemClick=onItemClick
     }
 
     var models:List<Animal> = listOf()
